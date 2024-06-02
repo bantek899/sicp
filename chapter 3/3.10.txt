@@ -1,0 +1,92 @@
+(define (make-withdraw initial-amount)
+  (let ((balance initial-amount))
+    (lambda (amount)
+      (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds"))))
+
+
+
+
+        
+        
+(let ((<var> <exp>)) <body>)
+
+((lambda (<var>) <body>) <exp>)
+
+
+GLOBAL ENVIRONMENT:
+
+make-withdraw:
+parameters: initial-amount
+body: (let ((balance initial-amount))
+    (lambda (amount)
+      (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds")))
+          
+          
+
+
+(define W1 (make-withdraw 100))
+
+
+W1:
+parameters: amount
+body: (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds")
+
+E1:
+initial-amount: 100
+          
+E2: 
+balance: 100
+
+
+          
+          
+
+
+(W1 50)
+
+E2: 
+amount: 50
+body: (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds")
+          
+        
+        
+        
+          
+ 
+(define W2 (make-withdraw 100))
+
+
+
+W2:
+parameters: amount
+body: (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds")
+
+
+E1:
+initial-amount: 100
+
+E2:
+balance: 50
+
+E3: 
+initial-amount: 100
+          
+E4: 
+balance: 100
+          
+         

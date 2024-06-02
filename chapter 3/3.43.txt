@@ -1,0 +1,21 @@
+
+serialiser - account can only be exchanged with one other account at a time
+
+
+P1		Bank 1			Bank 2			Bank 3		P2
+		10			20			30
+
+1 = 100		diff -10		diff -10
+			withdraw -10		withdraw -10 
+			
+		20			30
+			
+			deposit -10		deposit -10 	
+			
+					20			20
+					
+			
+			
+sum of the balances 20 20 20 = 10 20 30
+
+

@@ -1,0 +1,88 @@
+(define (make-account balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (dispatch m)
+    (cond ((eq? m 'withdraw) withdraw)
+          ((eq? m 'deposit) deposit)
+          (else (error "Unknown request -- MAKE-ACCOUNT"
+                       m))))
+  dispatch)
+  
+  
+  
+
+
+
+GLOBAL ENV:
+(define acc (make-account 50))
+
+acc:
+parameter: m
+
+E1:
+balance: 50
+
+withdraw: 
+parameter: amount
+body: (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds")
+        
+        
+deposit:
+parameter: amount
+body: (set! balance (+ balance amount))
+    	balance)
+    	
+
+dispatch:
+parameter: m
+(cond ((eq? m 'withdraw) withdraw)
+          ((eq? m 'deposit) deposit)
+          (else (error "Unknown request -- MAKE-ACCOUNT"
+                       m))))
+                       
+                       
+((acc 'deposit) 40)
+
+E2:
+m: 'deposit
+
+E3:
+amount: 40
+
+E1:
+balance: 90
+
+
+((acc 'withdraw) 60)
+E2:
+m: 'withdraw
+
+E3:
+amount: 60
+
+E1:
+balance: 30
+
+
+
+
+local state for acc is kept in E1
+
+(define acc2 (make-account 100))
+
+E2:
+balance: 100
+
+
+local state for acc2 is kept in it's own local environment 
+the symbols acc and acc2 with procedure bindings are kept in the global environment
+

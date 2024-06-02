@@ -1,0 +1,56 @@
+
+
+(1 2 3)
+
+x: (1 2 3)
+y: ()
+
+temp: (2 3)
+x: (1)
+
+x: (2 3)
+y: (1)
+
+temp: (3)
+x: (2 1)
+
+x: (3)
+y: (2 1)
+
+temp: ()
+x: (3 2 1)
+
+x: ()
+y: (3 2 1)
+
+
+
+collects the cdr of x and appends them in reverse order
+
+(define v (list 'a 'b 'c 'd))
+
+x: (a b c d)
+y: ()
+car: a
+cdr: ()
+
+
+x: (b c d)
+y: (a)
+car: b
+cdr: (a)
+
+
+x: (c d)
+y: (b a)
+car: c
+cdr: (b a)
+
+x: (d)
+y: (c b a)
+car: d
+cdr: (c b a)
+
+
+
+

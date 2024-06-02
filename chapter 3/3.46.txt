@@ -1,0 +1,14 @@
+
+
+
+P1 		MUTEX			P2
+		CELL=false
+		
+    acquire			acquire
+   
+    		cell=true
+    		
+    release			
+    		cell=false	
+    				release
+    		cell=false			

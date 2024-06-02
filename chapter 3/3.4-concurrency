@@ -1,0 +1,85 @@
+CONCURRENCY
+
+TIME:
+Introducting assignment = introducing time into computational models
+
+no assignment = timeless programs - expression that has a value always has the same value
+
+
+execution of assignment statements - delineates 'moments in time' when values change
+and so the result of evaluating an expressions depends the expression itself and whether the evaluation occurs before or after these moments
+
+
+
+ACTING CONCURRENTLY 
+- modelling systems as collections of processes that execute concurrently - to match perception of the the physical world - objects do not change one at a time in sequence but concurrently 
+
+We can divide computational models into parts that evolve separately and concurrently - even if the programs are to be executed on a sequential computer
+writing programs as if they were to be executed concurrently: 
+ - forces programmer to avoid inessential timing constraints
+ - makes programs more modular
+ - speed advantage over sequential computation (one op at a time so task time is proportional to number of operations performed) (if possible to decompose a problem into pieces that are relatively independent and communicate only rarely, possible to allocate pieces to separate computer processors - speed advangtage proportional to number of processors available)
+ 
+ 
+ 
+CONCURRENT PROGRAMS ARE INHERENTLY NONDETERMINISTIC 
+- they are described not by single-valued functions but by functions whose results are sets of possible values. 
+- i.e. there may be more than one possible 'correct' result produced by a concurrent program - because it is only required that the result be the same as for some sequential order 
+
+
+
+SERIALIZER - mechanism that allows us to constrain interleaving concurrent processes so that we can ensure the program behaviour is correct
+
+- processes will execute concurrently but there will be certain collections of procedures that cannot be executed concurrently 
+- result = distinguished sets of procedures such that only one execution of a procedure in each serialised set is permitted to happen at a time
+- if some procedure in the set is being executed, then a process that attempts to execute any procedure in the set will be forced to wait until the first execution has finished. 
+
+
+we can use serialization to control access to shared variables
+e.g. to update shared variable - put access to previous value of the variable and the assignment of the new variable in the same procedure. 
+this ensures no otherprocedure that assigns the variable can run concurrently with this procedure by serialising all of these procedures with the same serialiser, guaranteeing value of the variable cannot be changed between an access and the corresponding assignment. 
+
+2 requirements for concurrency 
+1. does not require processes to run sequentially, but to produce results that are the same if they had run sequentially
+2. may be more than one possible "correct" result produced by a concurrent program - because we require only that the result be the same as for some sequential order
+
+
+
+MUTEX (abbr. MUTUAL EXCLUSION - general problem of arranging a mechanism that permits concurrent processes to safely share resources is called the mutual exclusion problem)
+- primitive synchronisation mechanism
+- object that supports 2 operations - it can be acquired and released
+- once mutex has been acquired - no other acquire operations on that mutex may proceed until the mutex released 
+
+
+mutex = mutable object (e.g. one-element list - cell) that can hold the value true or false
+false = mutex available to be acquired
+true = mutex is unavailable and any process that attempts to acquire mutex must wait
+
+
+semaphore mechanism - 
+which was introduced in the ``THE'' Multiprogramming System developed at the Technological University of Eindhoven and named for the university's initials in Dutch (Dijkstra 1968a). The acquire and release operations were originally called P and V, from the Dutch words passeren (to pass) and vrijgeven (to release), in reference to the semaphores used on railroad systems. Dijkstra's classic exposition (1968b) was one of the first to clearly present the issues of concurrency control, and showed how to use semaphores to handle a variety of concurrency problems. 
+
+atomically - operation performed atomically i.e must guarantee that, once a process has tested the cell and found it to be false, the cell contents will actually  be set to true before any other processes can test the cell 
+otherwise mutex can fail 
+
+
+
+HOW SYSTEMS RUN CONCURRENT PROCESSES
+1. DISABLING TIME SLICING DURING A SPECIFIC PROCEDURE: 
+on a sequential processor concurrent processes executing using a time-slicing mechanism that cycles through processes, permitting each process to run for a short time before interrupting it and moving on to the next process
+e.g. in MIT SCHEME FOR A SINGLE PROCESSOR - which uses a time-slicing model - 'without-interrupts' disables time slicing interrupts while its procedure argument is being executed. 
+
+
+2. MULTIPROCESSING COMPUTERS PROVIDE INSTRUCTIONS THAT SUPPORT ATOMIC OPERATIONS DIRECTLY IN HARDWARE
+
+
+
+
+DEADLOCK - risk in a system that provide concurrent access to multiple shared resources:
+
+When each process is stalled forever - waiting for the other serialised procedure protecting a shared resource to exit 
+
+
+
+
+

@@ -1,0 +1,79 @@
+
+constructing computational objects with time-varying state:
+- MODEL STATE: let to establish an environment with a local state variable
+- MODEL CHANGE OF STATE: set is the assignment operator to enable us to change the value associated with a named local variable
+
+
+FUNCTIONAL PROGRAMMING = PROGRAMMING WITHOUT ANY USE OF ASSIGNMENTS 
+
+without assignments two evaluations of the same procedure with the same arguments will produce the same result -> procedures can be viewed as computing mathematical functions
+
+
+In substitution model- symbols are names for values
+Changing value of a variable - symbol no longer a name but a place where value can be stored and value stored can be changed 
+
+Places maintained in structures called environments.
+
+
+
+
+
+Referential transparency - equals can be substituted for equals in an expression without changing the value of the expression 
+
+
+Aliasing - single computational object being accessed by more than one name
+
+
+imperative programming - relative order of assignments - make sure that each statement uses the correct version of variables that have been changed
+
+
+SUBSITUTION MODEL 
+To apply a compound procedure to arguments, evaluate the body of the procedure with each formal parameter replaced by the corresponding argument. 
+
+ENVIRONMENTS:
+- sequence of frames
+- each frame is a table (possibly empty) of bindings - association of variable names with corresponding values
+- a single frame may contain at most one binding for any variable 
+- each frame also has a pointer to its enclosing environment (unless frame is considered global)
+
+- The value of a variable with respect to an environment that contains a binding for that variable is the value given by the first frame in the environment that contains the binding for that variable
+- If no frame in the sequence specifies a binding for that variable - then variable is unbound in the environment 
+
+
+
+ENVIRONMENT DETERMINES CONTEXT IN WHICH AN EXPRESSION SHOULD BE EVALUATED
+
+
+EValuation order is an implementation detail 
+
+
+In evaluation model:
+Procedure object = pair (code that specifies the procedure (body of the procedure), pointer to an environment)
+
+environment part of the procedure - a pointer to the environment in which the expression was evaluated to produce the procedure 
+(define creates definitions by adding bindings to frames)
+
+
+ The environment model of procedure application can be summarized by two rules:
+
+    A procedure object is applied to a set of arguments by constructing a frame, binding the formal parameters of the procedure to the arguments of the call, and then evaluating the body of the procedure in the context of the new environment constructed. The new frame has as its enclosing environment the environment part of the procedure object being applied.
+
+    A procedure is created by evaluating a lambda expression relative to a given environment. The resulting procedure object is a pair consisting of the text of the lambda expression and a pointer to the environment in which the procedure was created. 
+    
+ 
+ 
+ 
+PROCEDURES WITH LOCAL STATE: Frames as repository of objects with local state
+
+PROCEDURES WITH INTERNAL DEFINITIONS: Frames as repository of procedure objects within local environment
+ 
+ 
+    
+SHARING AND SAMENESS:
+admitting change means compound object must have an identity that is something different from the pieces from which it is composed. 
+Lisp - equality of pointers 
+pointer = memory address
+therefore data object itself is information store in some particular set of memory locations in the computer
+    
+
+

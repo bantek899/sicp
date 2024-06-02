@@ -1,0 +1,5 @@
+
+
+memo-fib computes nth Fib number in number of steps proportional to n as memo-fib is called n number of times - and never computes the same result twice as result is only calculated once. 
+
+no because fib don't call memo-fib but fib, which bypasses the table lookup
